@@ -5,35 +5,38 @@ read -s password
 
 
 # Create network
-docker network create trio-task-network
+docker network create pokedex-network
 
 
 #Create db volume
-docker volume create trio-db-volume
+docker volume create pokedex-volume
 
 
 # Build images
-docker build -t trio-db db
-docker build -t trio-flask-app flask-app
+docker build -t favourites_db db
+docker build -t frontend pokedex_generator
+docker build -t region_generator pokedex_generator
+docker build -t id_generator pokedex_generator
+docker build -t pokedex_info pokedex_generator
 
 
 # Run database container
 docker run -d \
---network trio-task-network \
---volume trio-db-volume:/var/lib/mysql \
+--network pokedex-network \
+--volume pokedex-volume:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=$password \
--e MYSQL_DATABASE=flask-db \
---name mysql trio-db
+-e MYSQL_DATABASE=favourites \
+--name mysql favourites_db
 
 
 # Run Flask app
 docker run -d \
---network trio-task-network \
---name flask-app trio-flask-app
+--network pokdex-network \
+--name pokedex_generator frontend
 
 # Run the NGINX container
 docker run -d \
-    --network trio-task-network \
+    --network pokedex-network \
     --mount type=bind,source=$(pwd)/nginx/nginx.conf,target=/etc/nginx/nginx.conf \
     -p 80:80 \
     --name nginx \
