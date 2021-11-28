@@ -11,7 +11,7 @@ class PokemonId:
         return f'#{str(self.num)}'
     
     def get_id():
-        # DICTIONARY OF REFIONS WITH RANGES APPLIED
+        # DICTIONARY OF REGIONS WITH RANGES APPLIED
         region_ranges = {'Kanto':random.randrange(1, 152), 'Johto':random.randrange(152, 252), 'Hoenn':random.randrange(252, 387), 'Sinnoh':random.randrange(387, 494),
                         'Unova':random.randrange(494, 650), 'Kalos':random.randrange(650, 722), 'Alola':random.randrange(722, 810), 'Galar':random.randrange(810, 902)}
         

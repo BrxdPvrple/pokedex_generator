@@ -27,6 +27,16 @@ random_region = Region.get_region() # CALL CLASS TO GET REGION INFO
 print(random_region) 
 
 
+
+
+
+
+
+
+
+
+
+
 # # IMPLEMENTATION TWO: CLASS FOR GENERATING A RANDOM TYPE
 # class Type:
 #     def __init__(self, name):
